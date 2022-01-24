@@ -1,0 +1,30 @@
+<table class="table">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">City</th>
+    <th scope="col">6 AM</th>
+    <th scope="col">12 PM</th>
+    <th scope="col">6 PM</th>
+    <th scope="col">12 AM</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let weather of citiesWeather">
+      <td scope="row">{{ weather?.city?.name }}</td>
+      <ng-container  *ngFor="let city of weather?.list">
+        <td scope="row" *ngIf=" ((city.dt * 1000 | date:'full') === (morning | date:'full'))"  >
+          {{city?.main?.temp}}     
+        </td>
+        <td scope="row" *ngIf=" ((city.dt * 1000 | date:'full') === (afternoon | date:'full'))"  >
+          {{city?.main?.temp}}     
+        </td>
+        <td scope="row" *ngIf=" ((city.dt * 1000 | date:'full') === (evening | date:'full'))"  >
+          {{city?.main?.temp}}     
+        </td>
+        <td scope="row" *ngIf=" ((city.dt * 1000 | date:'full') === (night | date:'full'))"  >
+          {{city?.main?.temp}}     
+        </td>
+    </ng-container>
+    </tr>
+  </tbody>
+</table>
